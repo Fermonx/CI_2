@@ -1,0 +1,142 @@
+    <div id="traveltable" class="login-wrapper d-flex align-items-center table ">
+        <div class="container form-login">
+            <h2 class="d-flex justify-content-center">Administración de Viajes</h2>
+            <table class="table table-responsive">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Viaje</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Tipo</th>
+                    <th>Imagen</th>
+                    <th>Preview</th>
+                    <th>Activo</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                {{#each retrieveTravel}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td>{{travel}}</td>
+                            <td>{{description}}</td>
+                            <td>{{price}}</td>
+                            <td>{{tipo}}</td>
+                            <td>{{image}}</td>
+                            <td><img src={{image}} alt={{travel}} id="admtrav"></td>
+
+                            <td><input type="checkbox"  onclick='window.location.assign("/admins/admintable/travelHide/{{id}}")' {{#if active}}checked{{/if}}></td>
+                            <td><button type="button"  onclick='window.location.assign("/admins/admintable/travelDelete/{{id}}")' class="btn tabledelete"><i class="fas fa-trash"></i></button></td>
+                            <td><button type="button" class="btn  tableedit"><i class=" fas fa-edit"></i</button></td>
+
+                        </tr>
+                {{/each}}
+
+                </tbody>
+                <div style="margin-bottom: 10px;">
+
+                </div>
+            </table>
+
+            <div class="d-flex container">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" data-toggle="modal" data-target="#createModal" class="btn btn-success align-items-end"><i class="fas fa-plus-circle"></i>Agregar</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade " id="createModal" tabindex="-1" role="textbox" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Viaje</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/admins/admintable/" enctype="multipart/form-data">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12" style="padding-bottom: 0.2em;">
+                                    <input type="text" placeholder="Nombre" name="travel" required>
+                                </div>
+
+                                <div class="col-12 form-group">
+                                    <input type="text" placeholder="Descripcion" name="description" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12" style="padding-bottom: 0.2em;">
+                                    <input type="text" placeholder="Precio" name="price" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <input type="text" placeholder="Tipo" name="tipo" required>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+
+                            <div class="form-group">
+                                <input type="file" name="file" class="form-control-dark"  style="font-size: 16px;" required>
+                            </div>
+                            <div class="form-group">
+                                <div class="container">
+                                    <div class="col-3">
+
+                                    </div>
+                                </div>
+                            </div>
+                        <button type="submit" class="btn btn-outline-success" style="padding-left: 15px; padding-right: 15px;">Crear</button>
+
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade " id="editModal" tabindex="-1" role="textbox" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modificar Viaje</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/admins/admintable/">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 ">
+                                    <input type="text" placeholder="Nombre" name="travel" required>
+                                    <br/>
+                                    <br/>
+                                    <input type="text" placeholder="Descripcion" name="description" required>
+
+                                </div>
+                                <div class="col-12 ">
+                                    <br/>
+                                    <input type="text" placeholder="Precio" name="price" required>
+                                    <br/>
+                                    <br/>
+                                    <input type="text" placeholder="Tipo" name="tipo" required>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <button type="submit" class="btn btn-success">Crear</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+

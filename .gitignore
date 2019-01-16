@@ -1,0 +1,6 @@
+.idea
+bower_components
+node_modules
+package-lock.json
+connection
+filmsModel.js
