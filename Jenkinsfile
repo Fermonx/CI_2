@@ -2,11 +2,7 @@ pipeline {
   agent none
 
   stages {
-
-    stage('SCM') {
-      git 'https://github.com/Fermonx/CI_2'
-    }
-
+    
     stage('Build & SonarQube Analysis') {
       agent any
       steps {
